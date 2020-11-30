@@ -16,7 +16,7 @@ output.Sockets = behavior.Set_Variable("Sockets","Global",0);
 
 io.on('connection', function(socket) {
   let local = {};
-  output.To_Number = behavior.To_Number(behaviors.Get_Variable_Value("Sockets","Global",null).Value);
+  output.To_Number = behavior.To_Number(behavior.Get_Variable_Value("Sockets","Global",null).Value);
   output.Add_Values = behavior.Add_Values(output["To_Number"].Result,1);
   output.Set_Variable = behavior.Set_Variable("Sockets","Global",output["Add_Values"].Sum);
   output.Concatenate = behavior.Concatenate(socket.id,"True","joined the server.");
@@ -24,14 +24,14 @@ io.on('connection', function(socket) {
   io.emit("join",output["Concatenate"].Result);
   
   // Announce new client count
-  output.Concatenate3 = behavior.Concatenate("There are now","True",behaviors.Get_Variable_Value("Sockets","Global",null).Value);
+  output.Concatenate3 = behavior.Concatenate("There are now","True",behavior.Get_Variable_Value("Sockets","Global",null).Value);
   output.Concatenate4 = behavior.Concatenate(output["Concatenate3"].Result,"True","clients online.");
   io.emit("console log",output["Concatenate4"].Result);
   io.emit("socket count",output["Sockets"].Value);
   
   socket.on('disconnect', function(reason) {
     let local = {};
-    output.To_Number1 = behavior.To_Number(behaviors.Get_Variable_Value("Sockets","Global",null).Value);
+    output.To_Number1 = behavior.To_Number(behavior.Get_Variable_Value("Sockets","Global",null).Value);
     output.Subtract_Values = behavior.Subtract_Values(output["To_Number1"].Result,1);
     output.Set_Variable1 = behavior.Set_Variable("Sockets","Global",output["Subtract_Values"].Difference);
     output.Concatenate1 = behavior.Concatenate(socket.id,"True","left the server. Reason:");
@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
     io.emit("leave",output["Concatenate2"].Result);
     
     // Announce new client count
-    output.Concatenate3 = behavior.Concatenate("There are now","True",behaviors.Get_Variable_Value("Sockets","Global",null).Value);
+    output.Concatenate3 = behavior.Concatenate("There are now","True",behavior.Get_Variable_Value("Sockets","Global",null).Value);
     output.Concatenate4 = behavior.Concatenate(output["Concatenate3"].Result,"True","clients online.");
     io.emit("console log",output["Concatenate4"].Result);
     io.emit("socket count",output["Sockets"].Value);
