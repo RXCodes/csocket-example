@@ -43,7 +43,7 @@ io.on('connection', function(socket) {
     output.Concatenate3 = behavior.Concatenate("There are now","True",behavior.Get_Variable_Value("Sockets","Global",null).Value);
     output.Concatenate4 = behavior.Concatenate(output["Concatenate3"].Result,"True","clients online.");
     io.emit("console log",output["Concatenate4"].Result);
-    io.emit("socket count",output["Sockets"].Value);
+    io.emit("socket count",behavior.Get_Variable_Value("Sockets","Global",null).Value);
   });
   
   socket.on('console input', function(input) {
